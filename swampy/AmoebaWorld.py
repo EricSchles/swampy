@@ -10,7 +10,7 @@ import random
 import time
 
 from tkinter import END
-from World import World, Animal, MyThread
+from .World import World, Animal, MyThread
 
 
 class AmoebaWorld(World):
@@ -129,7 +129,7 @@ class AmoebaWorld(World):
 
         x = eval(xexpr)
         y = eval(yexpr)
-        print('t = %.1f   x = %.1f   y = %.1f' % (t, x, y))
+        print(('t = %.1f   x = %.1f   y = %.1f' % (t, x, y)))
 
         for amoeba in self.animals:
             amoeba.move(x, y)

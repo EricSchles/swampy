@@ -6,8 +6,8 @@ Distributed under the GNU General Public License at gnu.org/licenses/gpl.html.
 """
 
 from tkinter import END
-from CellWorld import CellWorld
-from World import Animal, Interpreter
+from .CellWorld import CellWorld
+from .World import Animal, Interpreter
 
 class TurmiteWorld(CellWorld):
     """Provides a grid of cells that Turmites occupy."""

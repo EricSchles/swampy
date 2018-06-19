@@ -114,7 +114,7 @@ sim_locals = dict()
 # anything defined after this point is not available inside the simulator
 
 from tkinter import N, S, E, W, TOP, BOTTOM, LEFT, RIGHT, END
-from Gui import Gui, GuiCanvas
+from .Gui import Gui, GuiCanvas
 
 
 # get the version of Python
@@ -361,12 +361,12 @@ class Sync(Gui):
 
     def update_views(self):
         """Loops through the views and updates them."""
-        for key, view in self.views.items():
+        for key, view in list(self.views.items()):
             view.update(self.locals[key])
 
     def clear_views(self):
         """Loops through the views and clears them."""
-        for key, view in self.views.items():
+        for key, view in list(self.views.items()):
             view.clear()
 
     def qu(self, **options):
@@ -758,7 +758,7 @@ class Thread:
 
         self.check_end_while()
         source = self.row.get()
-        print(self, source)
+        print((self, source))
 
         before = copy.copy(self.sync.locals)
 

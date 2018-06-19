@@ -33,7 +33,7 @@ import sys
 import tkinter
 from tkinter import N, S, E, W, SW, HORIZONTAL, ALL, LAST
 
-from Gui import Gui, GuiCanvas, Point, BBox, underride, ScaleTransform
+from .Gui import Gui, GuiCanvas, Point, BBox, underride, ScaleTransform
 
 # get the version of Python
 VERSION = sys.version.split()[0].split('.')
@@ -215,7 +215,7 @@ class Thing(object):
         # the number of things.
         Thing.things_drawn += 1
         if Thing.things_drawn % 100 == 0:
-            print(Thing.things_drawn)
+            print((Thing.things_drawn))
 
             # uncomment this to see things as they are drawn
             #self.diag.lumpy.update()
@@ -497,7 +497,7 @@ class Instance(Mapping):
             elif hasslots(val):
                 it = [(k, getattr(val, k)) for k in val.__slots__]
             else:
-                t = [k for k, v in type(val).__dict__.items()
+                t = [k for k, v in list(type(val).__dict__.items())
                      if str(v).find('attribute') == 1]
                 it = [(k, getattr(val, k)) for k in t]
             
@@ -721,8 +721,7 @@ class ClassDiagramClass(Thing):
             pass
             
         # draw the instance variables
-        ivars = list(self.ivars)
-        ivars.sort()
+        ivars = sorted(self.ivars)
         if ivars:
             lines.append(p.y)
             p.y += 1
@@ -1021,7 +1020,7 @@ def make_thing(lumpy, val):
         return thing
 
     # check the type of the value and dispatch accordingly
-    if type(val) == type(Lumpy) or type(val) == type(type(int)):
+    if isinstance(val, type(Lumpy)) or isinstance(val, type(type(int))):
         thing = Class(lumpy, val)  
     elif hasdict(val) or hasslots(val):
         thing = Instance(lumpy, val)
@@ -1069,7 +1068,7 @@ class Snapframe(object):
             try:
                 del self.locals[key]
             except KeyError:
-                print(key, "this shouldn't happen")
+                print((key, "this shouldn't happen"))
 
 
 class Snapshot(object):
@@ -1090,7 +1089,7 @@ class Snapshot(object):
     def spew(self):
         """Prints the frames in this snapshot."""
         for frame in self.frames:
-            print(frame.func, frame)
+            print((frame.func, frame))
 
     def clean(self, ref):
         """Remove all the variables in the reference stack from self.
@@ -1185,7 +1184,7 @@ class Lumpy(Gui):
         
     def opaque_module(self, modobj):
         """Makes all classes defined in this module opaque."""
-        for var, val in modobj.__dict__.items():
+        for var, val in list(modobj.__dict__.items()):
             if isinstance(val, type(Lumpy)):
                 self.opaque_class(val)
 

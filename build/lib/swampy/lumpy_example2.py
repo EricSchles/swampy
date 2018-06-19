@@ -9,16 +9,17 @@ Distributed under the GNU General Public License at gnu.org/licenses/gpl.html.
 
 """
 
-# create a Lumpy object and capture reference state
-import Lumpy
+from . import World
+from .TurtleWorld import TurtleWorld, Turtle
+
+from . import Lumpy
 lumpy = Lumpy.Lumpy()
+lumpy.opaque_class(World.Interpreter)
 lumpy.make_reference()
 
-# run the test code
-x = [1, 2, 3]
-y = x
-z = list(x)
+world = TurtleWorld()
+bob = Turtle(world)
 
-# draw the current state (relative to the last reference)
 lumpy.object_diagram()
+lumpy.class_diagram()
 

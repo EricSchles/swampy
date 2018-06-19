@@ -443,7 +443,7 @@ def split_options(options):
 
 def underride(d, **kwds):
     """Adds entries from (kwds) to (d) only if they are not already set."""
-    for key, val in kwds.items():
+    for key, val in list(kwds.items()):
         d.setdefault(key, val)
 
 
@@ -1180,7 +1180,7 @@ def widget_demo():
     def print_selection(event):
         """print the current color in the listbox
         """
-        print(get_selection())
+        print((get_selection()))
 
     def apply_color():
         """get the current color from the listbox and apply it
@@ -1269,7 +1269,7 @@ def widget_demo():
         slant = b2.swampy_var.get()
         font = tkinter.font.Font(family=family, size=size, weight=weight,
                            slant=slant)
-        print(font.actual())
+        print((font.actual()))
         item3.config(font=font)
 
     g.la(text='Font:')

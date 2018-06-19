@@ -6,7 +6,7 @@ Distributed under the GNU General Public License at gnu.org/licenses/gpl.html.
 """
 
 import math
-from World import World
+from .World import World
 
 
 class CellWorld(World):
@@ -119,7 +119,7 @@ class CellWorld(World):
     def redraw(self):
         """Clears the canvas and redraws all cells and animals."""
         self.canvas.clear()
-        for cell in self.cells.values():
+        for cell in list(self.cells.values()):
             cell.draw()
         for animal in self.animals:
             animal.draw()

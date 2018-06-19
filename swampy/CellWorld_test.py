@@ -7,7 +7,7 @@ Distributed under the GNU General Public License at gnu.org/licenses/gpl.html.
 
 import unittest
 
-import CellWorld
+from . import CellWorld
 
 class Tests(unittest.TestCase):
 

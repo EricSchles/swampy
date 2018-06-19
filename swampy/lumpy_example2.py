@@ -9,10 +9,10 @@ Distributed under the GNU General Public License at gnu.org/licenses/gpl.html.
 
 """
 
-import World
-from TurtleWorld import TurtleWorld, Turtle
+from . import World
+from .TurtleWorld import TurtleWorld, Turtle
 
-import Lumpy
+from . import Lumpy
 lumpy = Lumpy.Lumpy()
 lumpy.opaque_class(World.Interpreter)
 lumpy.make_reference()
